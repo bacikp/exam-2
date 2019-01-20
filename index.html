@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/zkouska.css">
+    <title>Zkouska</title>
+  </head>
+  <body>
+     <form name="myForm" action="" onsubmit="return validateForm()" method="post">
+       RZ: <input type="text" name="fname" id="rz">
+     <input type="submit" value="Overit" onclick="overit()">
+     <input type="submit" value="Zjistit kraj" onclick="kraj()">
+     </form> 
+     
+     <script>
+     function overit(testing) {
+      // if(!testing){
+      var rz = document.getElementById("rz").value;
+       //}
+      rz = rz.toUpperCase();
+      rz = rz.replace(/\s+/g, '');
+      if(rz.length > 7 || rz.length <5){
+	alert ("spatna delka RZ");
+	return;
+      }
+      if (rz.includes("G") || rz.includes("O") || rz.includes("Q") || rz.includes("W")){
+        alert("RZ obsahuje nepovolene znake G || O || Q || W");
+	return;
+      }
+      var hasNumber = /\d/;
+      if(!hasNumber.test(rz)){
+        alert("RZ neobsahuje cislo");
+	return;
+      }
+      var rzReg = /^[0-9A-Z][ABCEHJKLMPSTUZ][0-9A-Z]*$/;
+      if(rzReg.test(rz)){
+        alert("Znacka " + rz + " je validni RZ.");
+      }
+      else{
+        alert("Znacka " + rz + " ma spatny format.");
+      }
+      //alert ("typed" + rz);
+      return rz;
+     }
+     </script>
+
+
+     <script>
+     function kraj() {
+      var  x = overit();
+    //  alert(x[1]);
+      var krajrz;
+
+switch (x[1]) {
+  case "A":
+    krajrz = "Praha";
+   break;
+  case "B":
+    krajrz = "Brno";
+    break;
+  case "C":
+     krajrz = "Jihocesky";
+    break;
+  case "E":
+    krajrz = "Pardubicky";
+    break;
+  case "H":
+    krajrz = "Kralovehradecky";
+    break;
+  case "J":
+    krajrz = "Vysocina";
+    break;
+  case "K":
+    krajrz = "Karlovarsky";
+    break;
+  case "L":
+    krajrz = "Liberecky";
+   break;
+  case "M":
+    krajrz = "Olomoucky";
+    break;
+  case "P":
+     krajrz = "Plzensky";
+    break;
+  case "S":
+    krajrz = "Stredocesky";
+    break;
+  case "T":
+    krajrz = "Ostrava";
+    break;
+  case "U":
+    krajrz = "Ustecky";
+    break;
+  case "Z":
+    krajrz = "Zlinksy";
+    break;
+}
+
+  alert(krajrz);
+
+}
+
+
+
+     </script>
+     </body>
+</html>
+
